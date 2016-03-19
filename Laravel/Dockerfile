@@ -1,5 +1,5 @@
 FROM daocloud.io/centos:6.7
-MAINTAINER "huangang" <zhanghuangang@joojia.com>
+MAINTAINER "huangang" <huangangzhang@gmail.com>
 RUN yum update -y
 RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
 RUN rpm -ivh https://centos6.iuscommunity.org/ius-release.rpm
