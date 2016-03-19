@@ -1,8 +1,10 @@
 FROM daocloud.io/centos:6.7
 MAINTAINER "huangang" <huangangzhang@gmail.com>
 RUN yum update -y
-RUN rpm -ivh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
-RUN rpm -ivh https://centos6.iuscommunity.org/ius-release.rpm
+ADD epel-release-latest-6.noarch.rpm /epel-release-latest-6.noarch.rpm
+RUN rpm -ivh /epel-release-latest-6.noarch.rpm
+ADD ius-release-1.0-14.ius.centos6.noarch.rpm /ius-release.rpm
+RUN rpm -ivh ius-release.rpm
 #install php
 RUN yum install -y \
 php56u \
@@ -12,6 +14,7 @@ php56u-mbstring \
 php56u-mcrypt \
 php56u-openssl \
 php56u-mongo \
+php56u-redis \
 php56u-tokenizer
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php

@@ -22,6 +22,3 @@ server {
     }    
 }  
 ```
-
-
-docker run -v /Users/zhanghuangang/IdeaProjects/jspcms/out/artifacts:/tomcat/webapps/ROOT -d -p 8080:8080 -e TOMCAT_PASS="2012810505" daocloud.io/daocloud/dao-tomcat:v7.0.55 
