@@ -1,7 +1,8 @@
 ## 运行
-`docker build -t tomcat:1.0.0 . `
-`docker run -i -t -d  -p 8080:8080 -e INIT=bin/setup -e VIRTUAL_HOST=your.domain --name your.domain tomcat:1.0.0`
+`docker pull daocloud.io/daocloud/dao-tomcat:v7.0.55`
+`docker run -v /var/apps/out/artifacts:/tomcat/webapps/ROOT -d -p 8080:8080 -e TOMCAT_PASS="mypass" daocloud.io/daocloud/dao-tomcat:v7.0.55`
 用户名:admin, TOMCAT_PASS 为您需要的密码
+
 ## nginx 反向代理
 ```
 upstream tomcat.pupued.com {    
@@ -22,8 +23,5 @@ server {
 }  
 ```
 
-## 其他镜象
-```
-docker pull daocloud.io/daocloud/dao-tomcat:v7.0.55
-docker run -d -p 8080:8080 -e TOMCAT_PASS="mypass" daocloud.io/daocloud/dao-tomcat:v7.0.55 # 用户名:admin, TOMCAT_PASS 为您需要的密码
-```
+
+docker run -v /Users/zhanghuangang/IdeaProjects/jspcms/out/artifacts:/tomcat/webapps/ROOT -d -p 8080:8080 -e TOMCAT_PASS="2012810505" daocloud.io/daocloud/dao-tomcat:v7.0.55 
