@@ -38,13 +38,13 @@ docker run -d --name sentry-celery1 -e SENTRY_SECRET_KEY='<secret-key>' --link s
 If you'd like to be able to access the instance from the host without the container's IP, standard port mappings can be used. Just add -p 8080:9000 to the docker run arguments and then access either http://localhost:8080 or http://host-ip:8080 in a browser.
 
 ## 备注
-上面run的sentry邮件是发不出去的
+上面run的sentry邮件是发不出去的,进行如下配置
 ```
 docker run -d --name my-sentry \
--e SENTRY_SERVER_EMAIL='your@serviceemail.com' \
+-e SENTRY_SERVER_EMAIL='your@email.com' \
 -e SENTRY_EMAIL_HOST='youremail.host' \
--e SENTRY_EMAIL_PORT='emailport' \
--e SENTRY_EMAIL_USE_TLS='true' \
+-e SENTRY_EMAIL_PORT='emailport' \ #一般为25
+-e SENTRY_EMAIL_USE_TLS='false' \
 -e SENTRY_EMAIL_USER='username' \
 -e SENTRY_EMAIL_PASSWORD='password' \
 -e SENTRY_SECRET_KEY='<secret-key>' --link sentry-redis:redis --link sentry-postgres:postgres sentry
