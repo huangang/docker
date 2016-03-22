@@ -1,9 +1,9 @@
 #!/bin/bash
 
-port_development=20251
-port_testing=20252
-port_production_1=20256
-port_production_2=20257
+port_development=20161
+port_testing=20162
+port_production_1=20166
+port_production_2=20167
 
 
 action=$1
