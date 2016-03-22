@@ -49,3 +49,6 @@ docker run -d --name my-sentry \
 -e SENTRY_EMAIL_PASSWORD='password' \
 -e SENTRY_SECRET_KEY='<secret-key>' --link sentry-redis:redis --link sentry-postgres:postgres sentry
 ```
+
+[laravel && lumen 配置 sentry](https://github.com/getsentry/raven-php)
+
