@@ -8,8 +8,8 @@ chmod -R 777 bootstrap/cache
 ```
 本配置lumen和laravel均适用
 ## 运行
-docker build -t laravel:1.0.2 .  
-docker run -v /var/apps/your-project:/var/www/app -i -t -d -P -e INIT=bin/setup -e VIRTUAL_HOST=your.domain --name your.domain laravel:1.0.2
+docker build -t laravel:1.0.3 .  
+docker run -v /var/apps/your-project:/var/www/app -i -t -d -P -e INIT=bin/setup -e VIRTUAL_HOST=your.domain -e ENV=p --name your.domain laravel:1.0.3
 
 ## nginx反向模版
 ```
@@ -30,3 +30,7 @@ server {
     }    
 }   
 ```
+
+
+
+docker run -v /Users/zhanghuangang/Code/joojia/pegasus_t:/var/www/app -i -t -d -P -e INIT=bin/setup -e VIRTUAL_HOST=your.domain2 -e ENV=t --name your.domain2 laravel:1.0.3
