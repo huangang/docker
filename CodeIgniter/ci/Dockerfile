@@ -2,8 +2,8 @@ FROM php:5.5-fpm
 
 MAINTAINER zorro_ku_o <huangangzhang@gmail.com>
 
-ADD ./ci.ini /usr/local/etc/php/conf.d
-ADD ./ci.pool.conf /usr/local/etc/php-fpm.d/
+ADD ci.ini /usr/local/etc/php/conf.d/
+ADD ci.pool.conf /usr/local/etc/php-fpm.d/
 
 RUN apt-get update && apt-get install -y \
     libpq-dev \
