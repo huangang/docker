@@ -1,0 +1,2 @@
+*/1 * * * * php /app/artisan schedule:run
+*/1 * * * * sh /init.sh
