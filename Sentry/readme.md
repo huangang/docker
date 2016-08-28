@@ -51,12 +51,3 @@ docker run -d --name my-sentry \
 ```
 
 [laravel && lumen 配置 sentry](https://github.com/getsentry/raven-php)
-
-docker run -d --name my-sentry  -p 9000:9000 \
--e SENTRY_SERVER_EMAIL='jspcms@pupued.com' \
--e SENTRY_EMAIL_HOST='smtp.mxhichina.com' \
--e SENTRY_EMAIL_PORT='25' \
--e SENTRY_EMAIL_USE_TLS='false' \
--e SENTRY_EMAIL_USER='jspcms@pupued.com' \
--e SENTRY_EMAIL_PASSWORD='2012810505HuanGang' \
--e SENTRY_SECRET_KEY='dzb5vn_1a^g%4sfc8tqk(!38fs7wov*!)-a(s_tpspz8jevdze' --link sentry-redis:redis --link sentry-postgres:postgres sentry
