@@ -1,10 +1,10 @@
 FROM cusspvz/node:latest
 
-# isntall npminstall
-RUN npm install -g npminstall
+# 国内加速
+RUN npm config set registry "https://registry.npm.taobao.org"
 
 # isntall pm2
-RUN npminstall pm2 -g
+RUN npm isntall pm2 -g
 
 EXPOSE 8360
 
