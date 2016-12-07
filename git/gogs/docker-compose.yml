@@ -1,0 +1,37 @@
+git_server:
+  image: gogs/gogs
+  container_name: git_server
+  ports:
+   - "3000:3000"
+   - "30022:22"
+  volumes_from:
+   - git_serverdata
+  links:
+   - git_db:mysql
+
+git_serverdata:
+  image: busybox
+  container_name: git_serverdata
+  command: /bin/sh
+  volumes:
+    - /data
+  #Doesn't work with the latest version due to problem for filesystem
+  #  - ./data/gogs/conf/app.ini:/data/gogs/conf/app.ini
+
+git_db:
+  image: mysql:5.6
+  volumes_from:
+    - git_dbdata
+  ports:
+   - "3306:3306"
+  environment:
+   - MYSQL_ROOT_PASSWORD=mgreaudocker
+   - MYSQL_DATABASE=gogs
+   - MYSQL_USER=mgreau
+   - MYSQL_PASSWORD=mgreaudocker
+
+git_dbdata:
+  image: busybox
+  command: /bin/sh
+  volumes:
+    - /var/lib/mysql
