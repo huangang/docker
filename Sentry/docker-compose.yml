@@ -1,0 +1,76 @@
+version: '2'
+
+services:
+  redis:
+    restart: always
+    image: redis
+
+  postgres:
+    restart: always
+    image: postgres
+    volumes:
+      - /srv/docker/sentry/postgres:/var/lib/postgres/data:Z
+    environment:
+      - POSTGRES_PASSWORD=sentry_pass
+      - POSTGRES_USER=sentry
+
+
+
+  sentry:
+    restart: always
+    image: sentry
+    command: sentry start
+    depends_on:
+      - redis
+      - postgres
+    ports:
+      - "8088:9000"
+    volumes:
+      - /srv/docker/sentry/sentry:/home/sentry/data:Z
+    environment:
+      - SENTRY_SECRET_KEY=sentry_secret_key
+      - SENTRY_DB_USER=sentry
+      - SENTRY_DB_PASSWORD=sentry_pass
+      - SENTRY_DB_NAME=sentry
+      - SENTRY_POSTGRES_HOST=postgres
+
+      - SENTRY_SERVER_EMAIL=your@email.com
+      - SENTRY_EMAIL_HOST=youremail.host
+      - SENTRY_EMAIL_PORT=25
+      - SENTRY_EMAIL_USE_TLS=false
+      - SENTRY_EMAIL_USER=your@email.com
+      - SENTRY_EMAIL_PASSWORD=password
+
+      - SENTRY_REDIS_HOST=redis
+
+  celerybeat:
+    image: sentry
+    depends_on:
+      - postgres
+      - redis
+    command: sentry run cron
+    environment:
+      - SENTRY_DB_USER=sentry
+      - SENTRY_DB_PASSWORD=sentry_pass
+      - SENTRY_DB_NAME=sentry
+      - SENTRY_SECRET_KEY=sentry_secret_key
+
+      - SENTRY_POSTGRES_HOST=postgres
+
+      - SENTRY_REDIS_HOST=redis
+
+  celeryworker:
+    image: sentry
+    depends_on:
+      - postgres
+      - redis
+    command: sentry run worker
+    environment:
+      - SENTRY_DB_USER=sentry
+      - SENTRY_DB_PASSWORD=sentry_pass
+      - SENTRY_DB_NAME=sentry
+      - SENTRY_SECRET_KEY=sentry_secret_key
+
+      - SENTRY_POSTGRES_HOST=postgres
+
+      - SENTRY_REDIS_HOST=redis
