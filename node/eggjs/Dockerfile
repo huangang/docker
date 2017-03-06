@@ -13,7 +13,7 @@ RUN npm config set registry "https://registry.npm.taobao.org"
 # isntall pm2
 RUN npm isntall pm2 -g
 
-EXPOSE 8360
+EXPOSE 7001
 
 ADD init.sh /init.sh
 RUN chmod +x /init.sh
